@@ -1,0 +1,40 @@
+#!/bin/bash
+set -o nounset
+set -o errexit
+mydir=$(dirname $0)/..
+room=$mydir/location
+inventory=$mydir/inventory
+
+if [ $# -lt 1 ];
+then
+    echo "Use what?"
+    exit 0
+fi
+
+item=$1
+shift
+
+if test -e $inventory/$item;
+then
+    if test -e $inventory/$item/use;
+    then
+	echo "Using item $item"
+	$inventory/$item/use $*
+    else
+	echo "Can't use item $item"
+    fi
+elif test -e $room/item/$item;
+then
+    echo "You have to get item $item first"
+elif test -e $room/fixture/$item;
+then
+    if test -e $room/fixture/$item/use;
+    then
+	echo "Using fixture $item"
+	$room/fixture/$item/use $*
+    else
+	echo "Can't use fixture $item"
+    fi
+else 
+    echo "No item $item in sight"
+fi

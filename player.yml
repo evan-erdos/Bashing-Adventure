@@ -1,6 +1,1 @@
-%YAML 1.1
---- # player
-room: Cabin
-inventory: null
-
-...
+{inventory: null, room: Cabin}

@@ -1,9 +1,11 @@
 import argparse
 import yaml
 
+PLAYER_FILE="player.yml"
 from Thing import *
 from Room import *
 from Item import *
+import Player
 
 def status(args):
     print("I have some status")
@@ -17,9 +19,8 @@ def act(args):
 def look(args):
     with open('rooms.yml', 'r') as f:
         doc = yaml.load(f)
-        txt = doc["room_0"]["desc"]
-        print(txt)
-    room_0 = Room(None, "adsf")
+        txt = doc[player.data['room']]["desc"]
+    print(txt)
 
 parser = argparse.ArgumentParser(description='Play the Game')
 
@@ -45,6 +46,8 @@ lookparse.set_defaults(func=look)
 
 
 if __name__ == "__main__":
+    player=Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
     args.func(args)
+    player.save(PLAYER_FILE)

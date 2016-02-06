@@ -44,10 +44,11 @@ def look(args):
     print(txt)
 
 def take(args):
-    print("Called take with " + args);
 
-def drop(item):
-    print("Called drop with " + args);
+def drop(args):
+
+def use(args):
+
 
 parser = argparse.ArgumentParser(description='Play the Game')
 
@@ -84,6 +85,8 @@ dropparse = subparsers.add_parser('drop', help='drop an item')
 
 dropparse.add_argument('args', metavar='items', help='the items you want to drop', nargs='*')
 dropparse.set_defaults(func=drop)
+
+useparse = subparsers.add_parser('use', help='use an item')
 
 with open('rooms.yml', 'r') as f:
     doc = yaml.load(f)

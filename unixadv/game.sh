@@ -11,4 +11,3 @@ fi
 subcmd=$1
 shift;
 $mydir/location/command/$subcmd $*
-

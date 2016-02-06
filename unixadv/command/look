@@ -7,12 +7,19 @@ inventory=$mydir/inventory
 
 if [ $# -lt 1 ];
 then
-    cat $room/description
+    echo
+    cat $room/name
+    cat $room/name | tr '[a-zA-Z ]' '-'
+    cat $room/description | fmt
     if test -e $room/item;
-    then ls $room/item | while read file; do cat $room/item/$file/brief_description; done
+    then ls $room/item | while read file;
+			 do cat $room/item/$file/brief_description;
+			 done
     fi
     if test -e $room/fixture;
-    then ls $room/fixture | while read file; do cat $room/fixture/$file/brief_description; done
+    then ls $room/fixture | while read file;
+			    do cat $room/fixture/$file/brief_description;
+			    done
     fi
 
     echo "You see exits to:"
@@ -20,10 +27,10 @@ then
 
 elif test -e $room/item/$1;
 then
-    cat $room/item/$1/description;
+    cat $room/item/$1/description | fmt;
 elif test -e $room/fixture/$1;
 then
-    cat $room/fixture/$1/description;
+    cat $room/fixture/$1/description | fmt;
 elif test -e $inventory/$1;
 then
     cat $inventory/$1/description;

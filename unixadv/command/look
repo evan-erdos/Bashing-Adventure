@@ -7,6 +7,7 @@ inventory=$mydir/inventory
 
 if [ $# -lt 1 ];
 then
+    echo
     cat $room/name
     cat $room/name | tr '[a-zA-Z ]' '-'
     cat $room/description | fmt

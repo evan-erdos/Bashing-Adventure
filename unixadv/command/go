@@ -1,18 +1,19 @@
 #!/bin/bash
 set -o nounset
 set -o errexit
-room=$(dirname $0)/..
-area=$room/..
-mydir=$area/../..
+mydir=$(dirname $0)/..
+room=$mydir/location
+
 if [ $# -lt 1 ];
 then
     echo "Go where?";
 elif test -e $room/link/$1;
 then
-    newroom_real=$(readlink -f $room/link/$1);
     mydir_real=$(readlink -f $mydir)
+    # the dest should really be a relative symlink, TODO
+    dest_real=$(readlink -f $room/link/$1);
     rm $mydir_real/location;
-    ln -s $newroom_real $mydir_real/location;
+    ln -s $dest_real $mydir_real/location;
 else
     echo "$1 ain't no place I ever heard of. They speak English in $1?";
 fi

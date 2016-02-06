@@ -43,7 +43,7 @@ parser.set_defaults(func=status)
 
 subparsers = parser.add_subparsers()
 
-statusparse = subparsers.add_parser('status', help='show status')
+statusparse = subparsers.add_parser('status', help = 'show status')
 statusparse.set_defaults(func=status)
 
 moveparse = subparsers.add_parser('move', help='move somewhere')
@@ -59,7 +59,7 @@ actparse.set_defaults(func=act)
 lookparse = subparsers.add_parser('look', help='look')
 
 lookparse.add_argument('args', metavar='ARG', nargs='*',
-                       help='everything else')
+                      help='everything else')
 lookparse.set_defaults(func=look)
 
 with open('rooms.yml', 'r') as f:

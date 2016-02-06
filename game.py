@@ -3,10 +3,10 @@ import yaml
 import pprint
 
 PLAYER_FILE="player.yml"
-from Thing import *
-from Room import *
-from Item import *
-import Player
+from thing import *
+from room import *
+from item import *
+import player
 
 def status(args):
     print("I have some status")

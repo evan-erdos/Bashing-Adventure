@@ -1,6 +1,10 @@
 import argparse
 
 
+def status(args):
+    print("I have some status")
+
+
 def move(args):
     print("Moved to a place")
 
@@ -12,6 +16,8 @@ def look(args):
     print("looked")
 
 parser = argparse.ArgumentParser(description='Play the Game')
+# show status by default
+parser.set_defaults(func=status)
 
 subparsers = parser.add_subparsers()
 
@@ -29,5 +35,5 @@ lookparse = subparsers.add_parser('look', help='look')
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    # func is set by subcommand
+    # func is set by set_defaults
     args.func(args)

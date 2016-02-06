@@ -72,7 +72,7 @@ lookparse.set_defaults(func=look)
 with open('rooms.yml', 'r') as f:
     doc = yaml.load(f)
 
-pp = pprint.PrettyPrinter(indent=4) # I don't know why a class has to be instantiated to pretty print...
+pp = pprint.PrettyPrinter(indent=4)
 # pp.pprint(doc)
 
 roomDictionary = {}
@@ -86,5 +86,5 @@ if __name__ == "__main__":
     player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
-    args.func(args.args) #args args args args args args args argsargs args args argsargs args args argsargs args args argsargs args args argsargs args args args
+    args.func(args.args)
     player.save(PLAYER_FILE)

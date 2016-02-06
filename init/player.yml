@@ -1,0 +1,8 @@
+%YAML 1.1
+--- # player init
+
+Player:
+  desc: |
+    You feel fine.
+
+...

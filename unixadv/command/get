@@ -18,6 +18,9 @@ then
         mkdir -p $inventory;
         mv $room/item/$1 $inventory;
     fi
+elif test -e $room/fixture/$1;
+then
+    echo "That can't be taken.";
 else
     echo "No item $1 in sight";
 fi

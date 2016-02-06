@@ -1,0 +1,21 @@
+#!/bin/bash
+set -o nounset
+set -o errexit
+room=$(dirname $0)/..
+area=$room/..
+mydir=$area/../..
+inventory=$mydir/inventory
+
+if [ $# -lt 1 ];
+then
+    echo "Drop what?"
+    ls $inventory | xargs -n 1 -r echo "You have a"
+elif test -e $inventory/$1;
+then
+    # grab item
+    echo "Dropping item $1"
+    mkdir -p $room/item/
+    mv $inventory/$1 $room/item/;
+else 
+    echo "Don't have item $1"
+fi

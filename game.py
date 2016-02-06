@@ -1,6 +1,10 @@
 import argparse
 
 
+def status(args):
+    print "I have some status"
+
+
 def move(args):
     print "Moved to a place"
 
@@ -12,6 +16,8 @@ parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--sum', dest='accumulate', action='store_const',
                     const=sum, default=max,
                     help='sum the integers (default: find the max)')
+# show status by default
+parser.set_defaults(func=status)
 
 subparsers = parser.add_subparsers()
 
@@ -27,5 +33,5 @@ actparse.set_defaults(func=act)
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    # func is set by subcommand
+    # func is set by set_defaults
     args.func(args)

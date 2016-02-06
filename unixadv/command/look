@@ -1,7 +1,8 @@
 #!/bin/bash
 set -o nounset
 set -o errexit
-room=$(dirname $0)/..
+mydir=$(dirname $0)/..
+room=$mydir/location
 
 if [ $# -lt 1 ];
 then

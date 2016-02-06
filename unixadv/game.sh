@@ -1,7 +1,8 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
 mydir=$(dirname $0)
 
-echo $#
 if [ $# -lt 1 ];
 then
     echo "Pass a subcommand";

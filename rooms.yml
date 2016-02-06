@@ -1,20 +1,42 @@
 %YAML 1.1
 --- # things
 
-room_1:
+Deck:
   rooms:
-  - room_0
+  - Cabin
+  - Engine Room
+  - Boiler Room
 
   desc: |
-    Amazing! It's another room!
+    The surface of the ship.
 
 
-room_0:
+Cabin:
   rooms:
-  - room_1
+  - Deck
+  - Engine Room
+  - Boiler Room
 
   desc: |
-    Amazing! It's a room!
+    A small, cozy room to relax in.
+
+Engine Room:
+  rooms:
+  - Cabin
+  - Deck
+  - Boiler Room
+
+  desc: |
+    A room filled with pipes, where steam from the Boiler Room turns the propellers.
+
+Boiler Room:
+  rooms:
+  - Cabin
+  - Deck
+  - Engine Room
+
+  desc: |
+    A steaming hot room, where water is heated. A giant boiler occupies one side of the room while a pile of coal sits in the other.
+
 
 ...
-

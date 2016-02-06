@@ -11,3 +11,10 @@ fi
 subcmd=$1
 shift;
 $mydir/location/command/$subcmd $*
+
+if test -e $mydir/location/command/$subcmd;
+then
+    $mydir/location/command/$subcmd $*;
+else
+    $mydir/command/$subcmd $*;
+fi

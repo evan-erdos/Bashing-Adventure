@@ -21,7 +21,7 @@ def act(args):
 def look(args):
     with open('rooms.yml', 'r') as f:
         doc = yaml.load(f)
-    room = doc[player.args['room']]
+    room = doc[player.data['room']]
     if len(args)==0:
         txt = room["desc"]
     else:

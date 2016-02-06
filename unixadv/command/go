@@ -12,8 +12,7 @@ then
     mydir_real=$(readlink -f $mydir)
     # the dest should really be a relative symlink, TODO
     dest_real=$(readlink -f $room/link/$1);
-    rm $mydir_real/location;
-    ln -s $dest_real $mydir_real/location;
+    ln -sfn $dest_real $mydir_real/location;
 else
     echo "$1 ain't no place I ever heard of. They speak English in $1?";
 fi

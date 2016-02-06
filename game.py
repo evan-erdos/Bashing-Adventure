@@ -12,7 +12,14 @@ def status(args):
     print("I have some status")
 
 def move(args):
-    print("Moved to a place")
+    if len(args) == 0:
+        print('Where do you want to move to?')
+    else:
+        destination = args.pop(0)
+        if player.move(destination):
+            print("You move to the " + destination)
+        else:
+            print("You can't move there.")
 
 def act(args):
     print("Act in a way")

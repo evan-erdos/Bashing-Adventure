@@ -13,7 +13,7 @@ def status(args):
 
 def move(args):
     if len(args) == 0:
-        print('Where do you want to move to?')
+        print("You didn't specify anywhere to move to.")
     else:
         destination = args.pop(0)
         if player.move(destination):
@@ -43,6 +43,12 @@ def look(args):
                 txt = "You don't see " + thingToLookAt + "."
     print(txt)
 
+def take(args):
+    print("Called take with " + args);
+
+def drop(item):
+    print("Called drop with " + args);
+
 parser = argparse.ArgumentParser(description='Play the Game')
 
 # show status by default
@@ -54,8 +60,8 @@ statusparse = subparsers.add_parser('status', help='show status')
 statusparse.set_defaults(func=status)
 
 moveparse = subparsers.add_parser('move', help='move somewhere')
-moveparse.add_argument('args', metavar='ARG', nargs='*',
-                       help='everything else')
+moveparse.add_argument('args', metavar='room', nargs='*',
+                       help='the room to move to')
 moveparse.set_defaults(func=move)
 
 actparse = subparsers.add_parser('act', help='act')
@@ -65,9 +71,19 @@ actparse.set_defaults(func=act)
 
 lookparse = subparsers.add_parser('look', help='look')
 
-lookparse.add_argument('args', metavar='ARG', nargs='*',
-                       help='everything else')
+lookparse.add_argument('args', metavar='things', nargs='*',
+                       help='things to look at')
 lookparse.set_defaults(func=look)
+
+takeparse = subparsers.add_parser('take', help='take an item')
+
+takeparse.add_argument('args', metavar='items', help='the items you want to take', nargs='*')
+takeparse.set_defaults(func=take)
+
+dropparse = subparsers.add_parser('drop', help='drop an item')
+
+dropparse.add_argument('args', metavar='items', help='the items you want to drop', nargs='*')
+dropparse.set_defaults(func=drop)
 
 with open('rooms.yml', 'r') as f:
     doc = yaml.load(f)
@@ -86,5 +102,7 @@ if __name__ == "__main__":
     player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
+    # print("Arguments are:\n") # debugging info
+    # pp.pprint(args)
     args.func(args.args)
     player.save(PLAYER_FILE)

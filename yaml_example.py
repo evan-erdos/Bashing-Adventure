@@ -1,10 +1,10 @@
 
 import yaml
 
-with open('tree.yml', 'r') as f:
+with open('rooms.yml', 'r') as f:
     doc = yaml.load(f)
 
-txt = doc["treeroot"]["branch1"]
+txt = doc["room_0"]["desc"]
 print(txt)
 "branch1 text"
 

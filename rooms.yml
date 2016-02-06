@@ -1,20 +1,20 @@
 %YAML 1.1
 --- # things
 
-room_0: &id_room_0
+room_1:
   rooms:
-  - *id_room_1
-
-  desc: |
-    Amazing! It's a room!
-
-
-room_1: &id_room_1
-  rooms:
-  - *id_door
+  - room_0
 
   desc: |
     Amazing! It's another room!
+
+
+room_0:
+  rooms:
+  - room_1
+
+  desc: |
+    Amazing! It's a room!
 
 ...
 

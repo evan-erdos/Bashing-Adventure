@@ -8,13 +8,17 @@ inventory=$mydir/inventory
 
 if [ $# -lt 1 ];
 then
-    echo "Get what?"
+    echo "Get what?";
 elif test -e $room/item/$1;
 then
     # grab item
-    echo "Grabbing item $1"
-    mkdir -p $inventory
-    mv $room/item/$1 $inventory;
-else 
-    echo "No item $1 in sight"
+    echo "Grabbing item $1";
+    if test -e $room/item/$1/take;
+    then $room/item/$1/take;
+    else
+        mkdir -p $inventory;
+        mv $room/item/$1 $inventory;
+    fi
+else
+    echo "No item $1 in sight";
 fi

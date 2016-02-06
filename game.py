@@ -1,5 +1,6 @@
 import argparse
 import yaml
+import pprint
 
 from Thing import *
 from Room import *
@@ -40,9 +41,21 @@ actparse.set_defaults(func=act)
 
 lookparse = subparsers.add_parser('look', help='look')
 lookparse.add_argument('args', metavar='ARG', type=int, nargs='*',
-                      help='everything else')
+                       help='everything else')
 lookparse.set_defaults(func=look)
 
+with open('rooms.yml', 'r') as f:
+    doc = yaml.load(f)
+
+pp = pprint.PrettyPrinter(indent=4) # I don't know why a class has to be instantiated to pretty print...
+# pp.pprint(doc)
+
+roomDictionary = {}
+
+for roomName, dictionary in doc.items():
+    roomDictionary[roomName] = Room(dictionary)
+
+# pp.pprint(roomDictionary)
 
 if __name__ == "__main__":
     args = parser.parse_args()

@@ -25,16 +25,16 @@ def look(args):
     if len(args)==0:
         txt = room["desc"]
     else:
-        thingToLookAt=args.pop(0)
+        thingToLookAt = args.pop(0)
         if thingToLookAt in room["rooms"]:
-            txt=room["rooms"][thingToLookAt]["desc"]
+            txt = room["rooms"][thingToLookAt]["desc"]
         else:
-            txt=None
+            txt = None
             for itemdict in room["items"]:
                 if thingToLookAt in itemdict:
-                    txt=itemdict[thingToLookAt][0]["desc"]
+                    txt = itemdict[thingToLookAt][0]["desc"]
             if txt == None:
-                txt="?????"
+                txt = "?????"
     print(txt)
 
 parser = argparse.ArgumentParser(description='Play the Game')

@@ -11,10 +11,10 @@ class Thing:
     and describes anything which can be seen or manifested in-game.
     """
 
-    def __init__(self, args):
-        self.args = args
+    def __init__(self, data):
+        self.data = data
 
 
     def look(args):
-        print(self.args[desc])
+        print(self.data[desc])
         return False

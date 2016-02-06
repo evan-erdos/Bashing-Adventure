@@ -11,10 +11,10 @@ class Room(Thing):
     A room is something the player is in.  It has items.
     """
 
-    def __init__(self, args):
-        super(self.__class__, self).__init__(args)
-        self.args = args
+    def __init__(self, data):
+        super(self.__class__, self).__init__(data)
+        self.data = data
 
     def Look(args):
-        print(self.args[desc])
+        print(self.data[desc])
         return False

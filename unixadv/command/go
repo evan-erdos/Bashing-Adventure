@@ -13,6 +13,7 @@ then
     # the dest should really be a relative symlink, TODO
     dest_real=$(readlink -f $room/link/$1);
     ln -sfn $dest_real $mydir_real/location;
+    echo
     cat $room/name
     cat $room/name | tr '[a-zA-Z ]' '-'
     cat $room/description | fmt

@@ -6,9 +6,10 @@ def load(filename):
     return Player(doc)
 
 class Player:
-    def __init__(self,d):
-        self.data = d
+
+    def __init__(self,args):
+        self.args = args
 
     def save(self,filename):
         with open(filename,'w') as f:
-            yaml.dump(self.data,f)
+            yaml.dump(self.args,f)

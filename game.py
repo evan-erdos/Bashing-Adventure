@@ -59,7 +59,7 @@ for roomName, dictionary in doc.items():
 # pp.pprint(roomDictionary)
 
 if __name__ == "__main__":
-    player=Player.load(PLAYER_FILE)
+    player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
     args.func(args)

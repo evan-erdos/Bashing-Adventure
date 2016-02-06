@@ -18,6 +18,8 @@ class Player:
             yaml.dump(self.data, f)
 
     def move(self, room): # room must be a string (for now)
+        # need to check if room exists
         data[room] = room
+        return True
 
         #Todo: disallow moving to rooms that are not connected

@@ -13,6 +13,7 @@ then
     # the dest should really be a relative symlink, TODO
     dest_real=$(readlink -f $room/link/$1);
     ln -sfn $dest_real $mydir_real/location;
+    cat $room/description
 else
     echo "$1 ain't no place I ever heard of. They speak English in $1?";
 fi

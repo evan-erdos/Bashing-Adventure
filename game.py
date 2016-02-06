@@ -8,6 +8,7 @@ from room import *
 from item import *
 import player
 
+
 def status(args):
     print("I have some status")
 
@@ -20,7 +21,7 @@ def act(args):
 def look(args):
     with open('rooms.yml', 'r') as f:
         doc = yaml.load(f)
-    room = doc[player.data['room']]
+    room = doc[player.args['room']]
     if len(args)==0:
         txt = room["desc"]
     else:
@@ -73,7 +74,7 @@ for roomName, dictionary in doc.items():
 # pp.pprint(roomDictionary)
 
 if __name__ == "__main__":
-    player = Player.load(PLAYER_FILE)
+    player = player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
     args.func(args.args) #args args args args args args args argsargs args args argsargs args args argsargs args args argsargs args args argsargs args args args

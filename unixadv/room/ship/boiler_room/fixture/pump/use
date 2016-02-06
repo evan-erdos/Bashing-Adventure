@@ -1,5 +1,6 @@
 #!/bin/bash
-mydir=$(dirname $(readlink -f $0))/..
+mydir=$(dirname $(readlink -f $0))/../..
+echo $mydir
 waterleft=$(cat ${mydir}/water_remaining)
 waterleft=$((waterleft - 1))
 echo $waterleft > ${mydir}/water_remaining

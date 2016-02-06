@@ -33,7 +33,7 @@ def look(args):
                 if thingToLookAt in itemdict:
                     txt = itemdict[thingToLookAt][0]["desc"]
             if txt == None:
-                txt = "That isn't here."
+                txt = "You don't see " + thingToLookAt + "."
     print(txt)
 
 parser = argparse.ArgumentParser(description='Play the Game')

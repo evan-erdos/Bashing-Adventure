@@ -47,12 +47,12 @@ statusparse = subparsers.add_parser('status', help='show status')
 statusparse.set_defaults(func=status)
 
 moveparse = subparsers.add_parser('move', help='move somewhere')
-moveparse.add_argument('args', metavar='ARG', type=int, nargs='*',
+moveparse.add_argument('args', metavar='ARG', nargs='*',
                        help='everything else')
 moveparse.set_defaults(func=move)
 
 actparse = subparsers.add_parser('act', help='act')
-actparse.add_argument('args', metavar='ARG', type=int, nargs='*',
+actparse.add_argument('args', metavar='ARG', nargs='*',
                       help='everything else')
 actparse.set_defaults(func=act)
 

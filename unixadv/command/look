@@ -14,6 +14,10 @@ then
     if test -e $room/fixture;
     then ls $room/fixture | while read file; do cat $room/fixture/$file/brief_description; done
     fi
+
+    echo "You see exits to:"
+    ls -1 $room/link
+
 elif test -e $room/item/$1;
 then
     cat $room/item/$1/description;
@@ -26,6 +30,3 @@ then
 else
     echo "You can't see that thing."
 fi
-
-echo "You see exits to:"
-ls -1 $room/link

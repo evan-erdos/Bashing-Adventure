@@ -2,7 +2,7 @@
 import yaml
 import argparse
 
-from Thing import *
+from thing import *
 
 class Room(Thing):
     """

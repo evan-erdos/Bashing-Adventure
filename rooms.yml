@@ -22,9 +22,9 @@ Cabin:
 
   items:
   - Chair:
-      - desc: Looks comfy
+    - desc: Looks comfy.
   - Table:
-      - desc: Looks less comfy
+    - desc: Looks less comfy.
 
 Engine Room:
   rooms:
@@ -44,5 +44,12 @@ Boiler Room:
   desc: |
     A steaming hot room, where water is heated. A giant boiler occupies one side of the room while a pile of coal sits in the other.
 
+  items:
+  - Coal:
+    - Small lumps of shiny, black rock.
+  - Boiler:
+    - A giant crucible. Shovel coal in to fuel the ship.
+  - Shovel:
+    - A sturdy shovel.
 
 ...

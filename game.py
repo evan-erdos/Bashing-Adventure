@@ -1,20 +1,31 @@
 import argparse
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--sum', dest='accumulate', action='store_const',
-                        const=sum, default=max,
-                        help='sum the integers (default: find the max)')
 
-    subparsers = parser.add_subparsers()
+def move(args):
+    print "Moved to a place"
 
-    move = subparsers.add_parser('move', help='move somewhere')
-    act = subparsers.add_parser('act', help='act')
 
-    move.add_argument('args', metavar='ARG', type=int, nargs='+',
+def act(args):
+    print "Act in a way"
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--sum', dest='accumulate', action='store_const',
+                    const=sum, default=max,
+                    help='sum the integers (default: find the max)')
+
+subparsers = parser.add_subparsers()
+
+moveparse = subparsers.add_parser('move', help='move somewhere')
+moveparse.add_argument('args', metavar='ARG', type=int, nargs='*',
+                       help='everything else')
+moveparse.set_defaults(func=move)
+
+actparse = subparsers.add_parser('act', help='act')
+actparse.add_argument('args', metavar='ARG', type=int, nargs='*',
                       help='everything else')
-    act.add_argument('args', metavar='ARG', type=int, nargs='+',
-                     help='everything else')
+actparse.set_defaults(func=act)
 
+if __name__ == "__main__":
     args = parser.parse_args()
-    print(args.accumulate(args.integers))
+    # func is set by subcommand
+    args.func(args)

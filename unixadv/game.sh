@@ -1,7 +1,8 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
 mydir=$(dirname $0)
 
-echo $#
 if [ $# -lt 1 ];
 then
     echo "Pass a subcommand";
@@ -10,7 +11,6 @@ fi
 
 subcmd=$1
 shift;
-$mydir/location/command/$subcmd $*
 
 if test -e $mydir/location/command/$subcmd;
 then

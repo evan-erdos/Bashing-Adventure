@@ -7,19 +7,18 @@ room=$mydir/location
 if [ $# -lt 1 ];
 then
     cat $room/description
+    if test -e $room/item;
+    then ls $room/item | while read file; do cat $room/item/$file/description; done
+    fi
+    if test -e $room/fixture;
+    then ls $room/fixture | while read file; do cat $room/fixture/$file/description; done
+    fi
 elif test -e $room/item/$1;
 then
-    cat $room/item/$1;
+    cat $room/item/$1/description;
 elif test -e $room/fixture/$1;
 then
-    cat $room/fixture/$1;
-fi
-
-if test -e $room/item;
-then ls $room/item | while read file; do cat $room/item/$file/description; done
-fi
-if test -e $room/fixture;
-then ls $room/fixture | while read file; do cat $room/fixture/$file/description; done
+    cat $room/fixture/$1/description;
 fi
 
 echo "You see exits to:"

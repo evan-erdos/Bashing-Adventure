@@ -1,21 +1,28 @@
 import argparse
+import yaml
 
+from Thing import *
+from Room import *
+from Item import *
 
 def status(args):
     print("I have some status")
 
-
 def move(args):
     print("Moved to a place")
-
 
 def act(args):
     print("Act in a way")
 
 def look(args):
-    print("looked")
+    with open('rooms.yml', 'r') as f:
+        doc = yaml.load(f)
+        txt = doc["room_0"]["desc"]
+        print(txt)
+    room_0 = Room(None, "adsf")
 
 parser = argparse.ArgumentParser(description='Play the Game')
+
 # show status by default
 parser.set_defaults(func=status)
 
@@ -32,6 +39,10 @@ actparse.add_argument('args', metavar='ARG', type=int, nargs='*',
 actparse.set_defaults(func=act)
 
 lookparse = subparsers.add_parser('look', help='look')
+lookparse.add_argument('args', metavar='ARG', type=int, nargs='*',
+                      help='everything else')
+lookparse.set_defaults(func=look)
+
 
 if __name__ == "__main__":
     args = parser.parse_args()

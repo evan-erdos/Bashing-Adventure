@@ -3,6 +3,7 @@ set -o nounset
 set -o errexit
 mydir=$(dirname $0)/..
 room=$mydir/location
+inventory=$mydir/inventory
 
 if [ $# -lt 1 ];
 then
@@ -13,13 +14,19 @@ then
     if test -e $room/fixture;
     then ls $room/fixture | while read file; do cat $room/fixture/$file/brief_description; done
     fi
+
+    echo "You see exits to:"
+    ls -1 $room/link
+
 elif test -e $room/item/$1;
 then
     cat $room/item/$1/description;
 elif test -e $room/fixture/$1;
 then
     cat $room/fixture/$1/description;
+elif test -e $inventory/$1;
+then
+    cat $inventory/$1/description;
+else
+    echo "You can't see that thing."
 fi
-
-echo "You see exits to:"
-ls -1 $room/link

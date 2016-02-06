@@ -5,7 +5,7 @@ def load(filename):
         doc = yaml.load(f)
     return Player(doc)
 
-class Player():
+class Player:
     def __init__(self,d):
         self.data = d
 

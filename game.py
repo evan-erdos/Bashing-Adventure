@@ -88,7 +88,7 @@ dropparse.set_defaults(func=drop)
 with open('rooms.yml', 'r') as f:
     doc = yaml.load(f)
 
-pp = pprint.PrettyPrinter(indent=4) # I don't know why a class has to be instantiated to pretty print...
+pp = pprint.PrettyPrinter(indent=4)
 # pp.pprint(doc)
 
 roomDictionary = {}
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
-    print("Arguments are:\n") # debugging info
-    pp.pprint(args)
+    # print("Arguments are:\n") # debugging info
+    # pp.pprint(args)
     args.func(args.args)
     player.save(PLAYER_FILE)

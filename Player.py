@@ -7,9 +7,9 @@ def load(filename):
 
 class Player:
 
-    def __init__(self,args):
-        self.args = args
+    def __init__(self,data):
+        self.data = data
 
     def save(self,filename):
         with open(filename,'w') as f:
-            yaml.dump(self.args,f)
+            yaml.dump(self.data,f)

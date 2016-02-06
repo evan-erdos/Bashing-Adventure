@@ -1,3 +1,4 @@
 mydir=$(dirname $(readlink -f $0))/..
+echo $mydir
 . ${mydir}/../../../command/look
 echo "CUSTOM LOOK"

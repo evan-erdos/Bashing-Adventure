@@ -20,6 +20,12 @@ Cabin:
   desc: |
     A small, cozy room to relax in.
 
+  items:
+  - Chair:
+      - desc: Looks comfy
+  - Table:
+      - desc: Looks less comfy
+
 Engine Room:
   rooms:
   - Cabin

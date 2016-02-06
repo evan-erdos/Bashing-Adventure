@@ -19,7 +19,20 @@ def act(args):
 def look(args):
     with open('rooms.yml', 'r') as f:
         doc = yaml.load(f)
-        txt = doc[player.data['room']]["desc"]
+    room = doc[player.data['room']]
+    if len(args)==0:
+        txt = room["desc"]
+    else:
+        thingToLookAt=args.pop(0)
+        if thingToLookAt in room["rooms"]:
+            txt=room["rooms"][thingToLookAt]["desc"]
+        else:
+            txt=None
+            for itemdict in room["items"]:
+                if thingToLookAt in itemdict:
+                    txt=itemdict[thingToLookAt][0]["desc"]
+            if txt == None:
+                txt="?????"
     print(txt)
 
 parser = argparse.ArgumentParser(description='Play the Game')
@@ -40,7 +53,7 @@ actparse.add_argument('args', metavar='ARG', type=int, nargs='*',
 actparse.set_defaults(func=act)
 
 lookparse = subparsers.add_parser('look', help='look')
-lookparse.add_argument('args', metavar='ARG', type=int, nargs='*',
+lookparse.add_argument('args', metavar='ARG', nargs='*',
                       help='everything else')
 lookparse.set_defaults(func=look)
 
@@ -49,5 +62,5 @@ if __name__ == "__main__":
     player=Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
-    args.func(args)
+    args.func(args.args) #args args args args args args args argsargs args args argsargs args args argsargs args args argsargs args args argsargs args args args
     player.save(PLAYER_FILE)

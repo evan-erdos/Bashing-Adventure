@@ -11,8 +11,8 @@ class Item(Thing):
     An `Item` is a Thing that can be taken and dropped.
     """
 
-    def __init__(self, arg, desc):
-        super(Item, self).__init__(arg, desc)
+    def __init__(self, args):
+        super(Item, self).__init__(args)
 
     def take(args):
         return False

@@ -1,5 +1,6 @@
 import argparse
 import yaml
+import pprint
 
 PLAYER_FILE="player.yml"
 from Thing import *
@@ -53,13 +54,26 @@ actparse.add_argument('args', metavar='ARG', type=int, nargs='*',
 actparse.set_defaults(func=act)
 
 lookparse = subparsers.add_parser('look', help='look')
+
 lookparse.add_argument('args', metavar='ARG', nargs='*',
                       help='everything else')
 lookparse.set_defaults(func=look)
 
+with open('rooms.yml', 'r') as f:
+    doc = yaml.load(f)
+
+pp = pprint.PrettyPrinter(indent=4) # I don't know why a class has to be instantiated to pretty print...
+# pp.pprint(doc)
+
+roomDictionary = {}
+
+for roomName, dictionary in doc.items():
+    roomDictionary[roomName] = Room(dictionary)
+
+# pp.pprint(roomDictionary)
 
 if __name__ == "__main__":
-    player=Player.load(PLAYER_FILE)
+    player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
     args.func(args.args) #args args args args args args args argsargs args args argsargs args args argsargs args args argsargs args args argsargs args args args

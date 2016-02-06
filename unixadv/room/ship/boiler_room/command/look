@@ -1,3 +1,3 @@
 mydir=$(dirname $(readlink -f $0))/..
-bash ${mydir}/../../../command/look
-echo "CUSTOM LOOK"
+${mydir}/../../../command/look
+echo "There are $(cat ${mydir}/water_remaining) units of water in this room."

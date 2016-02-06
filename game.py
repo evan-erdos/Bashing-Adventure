@@ -6,7 +6,7 @@ PLAYER_FILE="player.yml"
 from thing import *
 from room import *
 from item import *
-import player
+from player import *
 
 
 def status(args):
@@ -74,7 +74,7 @@ for roomName, dictionary in doc.items():
 # pp.pprint(roomDictionary)
 
 if __name__ == "__main__":
-    player = player.load(PLAYER_FILE)
+    player = Player.load(PLAYER_FILE)
     args = parser.parse_args()
     # func is set by set_defaults
     args.func(args.args) #args args args args args args args argsargs args args argsargs args args argsargs args args argsargs args args argsargs args args args

@@ -1,11 +1,14 @@
+
 import yaml
 
-def load(filename):
-    with open(filename, 'r') as f:
-        doc = yaml.load(f)
-    return Player(doc)
-
 class Player:
+
+    @staticmethod
+    def load(filename):
+        with open(filename, 'r') as f:
+            doc = yaml.load(f)
+        return Player(doc)
+
 
     def __init__(self,data):
         self.data = data

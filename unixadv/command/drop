@@ -1,20 +1,14 @@
 #!/bin/bash
-set -o nounset
-set -o errexit
-mydir=$(dirname $0)/..
-room=$mydir/location
-inventory=$mydir/inventory
+source $GAMEDIR/library/mainlib.sh
 
 if [ $# -lt 1 ];
 then
     echo "Drop what?"
-    ls $inventory | xargs -n 1 -r echo "You have a"
-elif test -e $inventory/$1;
-then
-    # grab item
-    echo "Dropping item $1"
-    mkdir -p $room/item/
-    mv $inventory/$1 $room/item/;
+    echo "You have:"
+    ls $inventory
 else 
-    echo "Don't have item $1"
+    # either drop an item and inform the player
+    # or complain about not dropping it
+    drop $1 && echo "Dropped item $1" \
+	    || echo "Don't have item $1"
 fi

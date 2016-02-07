@@ -1,29 +1,28 @@
 #!/bin/bash
-set -o nounset
-set -o errexit
-mydir=$(dirname $0)
-if [ $# -lt 1 ];
+export GAMEDIR=$(dirname $0)
+
+if test $# -lt 1;
 then
     echo "Pass a subcommand.";
     echo "Possible subcommands are:";
-    for command in $(ls $mydir/command/)
-    do
-        echo $command
-    done
+    ls $GAMEDIR/command
     exit 0;
 fi
 
 if [[ $1 = -s ]];
 then
-    xargs -n 1 -d '\n' -I % sh -c "$0 %"
+    # interactive mode
+    exec xargs -n 1 -d '\n' -I % sh -c "$0 %"
 fi
 
 subcmd=$1
-shift;
+shift
 
-if test -e $mydir/location/command/$subcmd;
+if test -e $GAMEDIR/location/command/$subcmd;
 then
-    $mydir/location/command/$subcmd $*;
+    # run per-location command if it exists
+    $GAMEDIR/location/command/$subcmd $*;
 else
-    $mydir/command/$subcmd $*;
+    # run default command otherwise
+    $GAMEDIR/command/$subcmd $*;
 fi

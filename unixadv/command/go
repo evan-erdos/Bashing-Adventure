@@ -1,22 +1,14 @@
 #!/bin/bash
-set -o nounset
-set -o errexit
-mydir=$(dirname $0)/..
-room=$mydir/location
+source $GAMEDIR/library/mainlib.sh
 
 if [ $# -lt 1 ];
 then
     echo "Go where?";
-elif test -e $room/link/$1;
-then
-    mydir_real=$(readlink -f $mydir)
-    # the dest should really be a relative symlink, TODO
-    dest_real=$(readlink -f $room/link/$1);
-    ln -sfn $dest_real $mydir_real/location;
-    echo
-    cat $room/name
-    cat $room/name | tr '[a-zA-Z ]' '-'
-    cat $room/description | fmt
+    echo "You see exits to:"
+    ls $room/link
 else
-    echo "$1 ain't no place I ever heard of. They speak English in $1?";
+    # change room and describe it,
+    # or just complain about it not existing
+    change_room $room/link/$1 && describe_room \
+    || echo "$1 ain't no place I ever heard of. They speak English in $1?"
 fi

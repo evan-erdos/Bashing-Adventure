@@ -1,40 +1,25 @@
 #!/bin/bash
-set -o nounset
-set -o errexit
-mydir=$(dirname $0)/..
-room=$mydir/location
-inventory=$mydir/inventory
+source $GAMEDIR/library/mainlib.sh
 
 if [ $# -lt 1 ];
 then
     echo "Use what?"
     exit 0
-fi
+else
+    item=$1
+    shift
 
-item=$1
-shift
-
-if test -e $inventory/$item;
-then
-    if test -e $inventory/$item/use;
+    if test -e $inventory/$item;
     then
-	echo "Using item $item"
-	$inventory/$item/use $*
-    else
-	echo "Can't use item $item"
-    fi
-elif test -e $room/item/$item;
-then
-    echo "You have to get item $item first"
-elif test -e $room/fixture/$item;
-then
-    if test -e $room/fixture/$item/use;
+	use_item $item && echo "Using item $item" \
+		|| echo "Can't use item $item"
+    elif test -e $room/fixture/$item;
     then
-	echo "Using fixture $item"
-	$room/fixture/$item/use $*
-    else
-	echo "Can't use fixture $item"
+	use_fixture $item && echo "Using fixture $item" \
+		|| echo "Can't use fixture $item"
+    elif test -e $room/item/$item;
+    then echo "You have to get item $item first"
+    else 
+	echo "No item $item in sight"
     fi
-else 
-    echo "No item $item in sight"
 fi

@@ -1,26 +1,13 @@
 #!/bin/bash
-set -o nounset
-set -o errexit
-mydir=$(dirname $0)/..
-room=$mydir/location
-inventory=$mydir/inventory
+source $GAMEDIR/library/mainlib.sh
 
 if [ $# -lt 1 ];
 then
     echo "Get what?";
-elif test -e $room/item/$1;
-then
-    # grab item
-    echo "Grabbing item $1";
-    if test -e $room/item/$1/take;
-    then $room/item/$1/take;
-    else
-        mkdir -p $inventory;
-        mv $room/item/$1 $inventory;
-    fi
-elif test -e $room/fixture/$1;
-then
-    echo "That can't be taken.";
+    echo "You see items:"
+    ls $room/item
 else
-    echo "No item $1 in sight";
+    get $1 && echo "Got item $1" \
+    || ( test -e $room/fixture/$1 && echo "Can't take $1" ) \
+    || echo "No item $1 in sight"
 fi
